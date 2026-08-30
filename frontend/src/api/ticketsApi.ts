@@ -3,7 +3,8 @@ import type { CreateTicketRequest } from '../types/CreateTicketRequest'
 import type { UpdateTicketRequest } from '../types/UpdateTicketRequest'
 import { getStoredToken } from '../auth/AuthContext'
 
-const API_URL = 'http://localhost:5285/api/tickets'
+const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:5285'
+const API_URL = `${API_BASE}/api/tickets`
 
 export type TicketFilters = {
   search?: string

@@ -14,10 +14,19 @@ using SupportTickets.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var port = Environment.GetEnvironmentVariable("PORT");
+if (!string.IsNullOrWhiteSpace(port))
+{
+    builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+}
+
+var allowedOrigins = (builder.Configuration["Cors:AllowedOrigins"] ?? "http://localhost:5173")
+    .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("Frontend", policy =>
-        policy.WithOrigins("http://localhost:5173")
+        policy.WithOrigins(allowedOrigins)
             .AllowAnyHeader()
             .AllowAnyMethod());
 });
@@ -63,10 +72,7 @@ var app = builder.Build();
 
 await AdminSeeder.SeedAsync(app.Services, app.Configuration);
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseCors("Frontend");
-}
+app.UseCors("Frontend");
 app.UseAuthentication();
 app.UseAuthorization();
 
