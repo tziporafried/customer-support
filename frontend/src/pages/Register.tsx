@@ -1,8 +1,11 @@
 import { useState, type FormEvent } from 'react'
-import { Link } from 'react-router-dom'
-import { register } from '../api/authApi'
+import { Link, useNavigate } from 'react-router-dom'
+import { login, register } from '../api/authApi'
+import { useAuth } from '../auth/AuthContext'
 
 export function Register() {
+  const navigate = useNavigate()
+  const { signIn } = useAuth()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -17,13 +20,23 @@ export function Register() {
 
     try {
       await register({ name, email, password })
-      setIsRegistered(true)
     } catch (requestError) {
       setError(
         requestError instanceof Error
           ? requestError.message
           : 'Unable to create your account.',
       )
+      setIsSubmitting(false)
+      return
+    }
+
+    try {
+      const loginResponse = await login({ email, password })
+      signIn(loginResponse.token, loginResponse.user)
+      navigate('/')
+    } catch {
+      // Account was created successfully; only the automatic sign-in failed.
+      setIsRegistered(true)
     } finally {
       setIsSubmitting(false)
     }
