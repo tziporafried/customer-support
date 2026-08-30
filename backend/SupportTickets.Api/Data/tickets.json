@@ -1,0 +1,123 @@
+[
+  {
+    "Id": "8f3e2c1d-7a64-4b91-9d25-3e6f8a1c4b70",
+    "FullName": "Dana Cohen",
+    "Email": "dana.cohen@example.com",
+    "Description": "I cannot access my account after resetting my password.",
+    "Status": "In Progress",
+    "Resolution": null,
+    "AiSummary": null,
+    "CreatedAt": "2026-08-27T09:00:00Z",
+    "UpdatedAt": "2026-08-27T21:49:02.9449937Z"
+  },
+  {
+    "Id": "71d6bcb9-fdac-4e9b-8fd1-3faa7ca0235e",
+    "FullName": "Test Customer",
+    "Email": "test@example.com",
+    "Description": "My test support issue",
+    "Status": "Closed",
+    "Resolution": "Investigating the issue",
+    "AiSummary": null,
+    "CreatedAt": "2026-08-27T07:18:11.2697604Z",
+    "UpdatedAt": "2026-08-27T10:47:10.7123381Z"
+  },
+  {
+    "Id": "64ff7e4c-2011-4b6b-b6bc-4904d7799ac9",
+    "FullName": "Test Customer",
+    "Email": "test1@example.com",
+    "Description": "My test support issue",
+    "Status": "In Progress",
+    "Resolution": "Investigating the issue",
+    "AiSummary": null,
+    "CreatedAt": "2026-08-27T08:17:29.268501Z",
+    "UpdatedAt": "2026-08-27T08:17:43.3566478Z"
+  },
+  {
+    "Id": "7b5e843c-0cbc-4378-91e7-a0a68beecc25",
+    "FullName": "123",
+    "Email": "zipi3637@gmail.com",
+    "Description": "123124",
+    "Status": "Open",
+    "Resolution": null,
+    "AiSummary": null,
+    "CreatedAt": "2026-08-27T10:32:15.9479508Z",
+    "UpdatedAt": "2026-08-27T12:55:20.6614758Z"
+  },
+  {
+    "Id": "962566b7-516b-48ff-9b2a-154b1fa588c5",
+    "FullName": "test1",
+    "Email": "zipi36371@gmail.com",
+    "Description": "test 1",
+    "Status": "In Progress",
+    "Resolution": null,
+    "AiSummary": null,
+    "CreatedAt": "2026-08-27T11:08:38.1445623Z",
+    "UpdatedAt": "2026-08-27T12:55:38.6244954Z"
+  },
+  {
+    "Id": "ccd8568a-9d7a-4ed0-980c-df0e2f1b2040",
+    "FullName": "test 2",
+    "Email": "zipi36372@gmail.com",
+    "Description": "ai?",
+    "Status": "Open",
+    "Resolution": null,
+    "AiSummary": "The user is asking whether the system or service utilizes artificial intelligence.",
+    "CreatedAt": "2026-08-27T11:15:27.638972Z",
+    "UpdatedAt": "2026-08-27T11:15:27.638972Z"
+  },
+  {
+    "Id": "a1c4fda8-e09c-4f3e-b99c-829f9315f197",
+    "FullName": "123",
+    "Email": "12@gmail.com",
+    "Description": "124134",
+    "Status": "Open",
+    "Resolution": null,
+    "AiSummary": "It looks like you forgot to include the text of the support ticket! Please provide the details of ticket 124134, and I will gladly summarize it for you in one sentence.",
+    "CreatedAt": "2026-08-27T12:55:48.1490919Z",
+    "UpdatedAt": "2026-08-27T12:55:58.7516605Z"
+  },
+  {
+    "Id": "f52e254c-1266-458e-bd98-038a63818c0f",
+    "FullName": "\u05E6\u05E4\u05D5\u05E8\u05D4 \u05E4\u05E8\u05D9\u05D3",
+    "Email": "zipora3637@gmail.com",
+    "Description": "hi\ntest\nby",
+    "Status": "Open",
+    "Resolution": null,
+    "AiSummary": null,
+    "CreatedAt": "2026-08-29T21:46:49.1873633Z",
+    "UpdatedAt": "2026-08-29T21:46:49.1873633Z"
+  },
+  {
+    "Id": "8e928d24-4577-4ec1-b440-a6a9dff035b3",
+    "FullName": "\u05E6\u05E4\u05D5\u05E8\u05D4 \u05E4\u05E8\u05D9\u05D3",
+    "Email": "zipora3637@gmail.com",
+    "Description": "hi\nby",
+    "Status": "Open",
+    "Resolution": null,
+    "AiSummary": "The user initiated and immediately ended the conversation with a simple greeting and farewell.",
+    "CreatedAt": "2026-08-29T21:51:06.8427375Z",
+    "UpdatedAt": "2026-08-29T21:51:06.8427375Z"
+  },
+  {
+    "Id": "5c01ebcd-da4f-40c5-9785-ed31d3bffc56",
+    "FullName": "yy",
+    "Email": "zipora3637@gmail.com",
+    "Description": "sfg",
+    "Status": "Open",
+    "Resolution": null,
+    "AiSummary": "It appears the support ticket text was cut off (\u0022sfg\u0022), so no meaningful summary can be provided.",
+    "CreatedAt": "2026-08-29T22:42:47.048066Z",
+    "UpdatedAt": "2026-08-29T22:42:47.048066Z"
+  },
+  {
+    "Id": "a4b2d824-4c44-414e-ab4f-f62c277149f7",
+    "FullName": "example",
+    "Email": "zipi3637@gmail.com",
+    "Description": "hi",
+    "Status": "Open",
+    "Resolution": null,
+    "AiSummary": "The customer sent a greeting with no further details or questions.",
+    "CreatedAt": "2026-08-30T07:46:35.6671062Z",
+    "UpdatedAt": "2026-08-30T07:46:35.6671062Z"
+  }
+]
