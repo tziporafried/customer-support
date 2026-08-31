@@ -234,5 +234,10 @@ app.MapPut("/api/tickets/{id:guid}", async Task<IResult> (
     var ticket = await ticketService.UpdateTicketAsync(id, dto);
     return ticket is null ? Results.NotFound() : Results.Ok(ticket);
 }).RequireAuthorization(policy => policy.RequireRole("Admin"));
+app.MapDelete("/api/tickets/{id:guid}", async Task<IResult> (Guid id, TicketService ticketService) =>
+{
+    var deleted = await ticketService.DeleteTicketAsync(id);
+    return deleted ? Results.NoContent() : Results.NotFound();
+});
 
 app.Run();

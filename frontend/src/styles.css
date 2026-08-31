@@ -321,11 +321,12 @@ th {
   letter-spacing: 0.02em;
 }
 
-th:nth-child(1) { width: 18%; }
-th:nth-child(2) { width: 20%; }
-th:nth-child(3) { width: 26%; }
-th:nth-child(4) { width: 22%; }
-th:nth-child(5) { width: 14%; }
+th:nth-child(1) { width: 17%; }
+th:nth-child(2) { width: 19%; }
+th:nth-child(3) { width: 24%; }
+th:nth-child(4) { width: 20%; }
+th:nth-child(5) { width: 13%; }
+th:nth-child(6) { width: 7%; }
 
 tbody tr:last-child td { border-bottom: 0; }
 
@@ -355,6 +356,27 @@ tbody tr:hover { background: #f8faff; }
 
 .ai-summary-cell--empty {
   color: var(--color-text-secondary);
+}
+
+.actions-cell {
+  text-align: right;
+}
+
+.delete-ticket-button {
+  display: inline-grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-error);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.delete-ticket-button:hover {
+  background: var(--color-error-surface);
 }
 
 .status-badge {

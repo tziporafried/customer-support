@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getTickets } from '../api/ticketsApi'
+import { deleteTicket, getTickets } from '../api/ticketsApi'
 import { NewTicketModal } from '../components/NewTicketModal'
 import { TicketTable } from '../components/TicketTable'
 import type { Ticket } from '../types/Ticket'
@@ -8,6 +8,7 @@ export function TicketsList() {
   const [tickets, setTickets] = useState<Ticket[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [deleteError, setDeleteError] = useState<string | null>(null)
   const [search, setSearch] = useState('')
   const [status, setStatus] = useState('')
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -26,6 +27,25 @@ export function TicketsList() {
   function handleTicketCreated() {
     setIsModalOpen(false)
     setRefreshCount((count) => count + 1)
+  }
+
+  async function handleDelete(ticket: Ticket) {
+    const confirmed = window.confirm(
+      `Delete the ticket from ${ticket.fullName}? This cannot be undone.`,
+    )
+
+    if (!confirmed) {
+      return
+    }
+
+    setDeleteError(null)
+
+    try {
+      await deleteTicket(ticket.id)
+      setRefreshCount((count) => count + 1)
+    } catch {
+      setDeleteError('Unable to delete ticket.')
+    }
   }
 
   return (
@@ -70,13 +90,19 @@ export function TicketsList() {
         </div>
       </section>
 
+      {deleteError && (
+        <div className="feedback-message feedback-message--error" role="alert">
+          {deleteError}
+        </div>
+      )}
+
       <section aria-label="Ticket results" aria-busy={isLoading}>
         {isLoading ? (
           <div className="results-state" role="status">Loading tickets...</div>
         ) : error ? (
           <div className="results-state results-state--error" role="alert">{error}</div>
         ) : (
-          <TicketTable tickets={tickets} />
+          <TicketTable tickets={tickets} onDelete={handleDelete} />
         )}
       </section>
 

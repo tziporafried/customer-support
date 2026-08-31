@@ -4,9 +4,10 @@ import type { Ticket } from '../types/Ticket'
 
 type TicketTableProps = {
   tickets: Ticket[]
+  onDelete: (ticket: Ticket) => void
 }
 
-export function TicketTable({ tickets }: TicketTableProps) {
+export function TicketTable({ tickets, onDelete }: TicketTableProps) {
   if (tickets.length === 0) {
     return (
       <div className="results-state">
@@ -28,6 +29,9 @@ export function TicketTable({ tickets }: TicketTableProps) {
               <th scope="col">Description</th>
               <th scope="col">AI Summary</th>
               <th scope="col">Status</th>
+              <th scope="col">
+                <span className="visually-hidden">Actions</span>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -48,6 +52,17 @@ export function TicketTable({ tickets }: TicketTableProps) {
                   )}
                 </td>
                 <td><StatusBadge status={ticket.status} /></td>
+                <td className="actions-cell">
+                  <button
+                    type="button"
+                    className="delete-ticket-button"
+                    onClick={() => onDelete(ticket)}
+                    aria-label={`Delete ticket for ${ticket.fullName}`}
+                    title="Delete ticket"
+                  >
+                    <span aria-hidden="true">🗑</span>
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

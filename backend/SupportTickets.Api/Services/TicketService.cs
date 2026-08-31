@@ -144,6 +144,22 @@ public sealed class TicketService
         return ticket;
     }
 
+    public async Task<bool> DeleteTicketAsync(Guid id)
+    {
+        var tickets = await GetTicketsAsync();
+        var ticket = tickets.FirstOrDefault(ticket => ticket.Id == id);
+
+        if (ticket is null)
+        {
+            return false;
+        }
+
+        tickets.Remove(ticket);
+        await SaveTicketsAsync(tickets);
+
+        return true;
+    }
+
     private async Task SaveTicketsAsync(List<Ticket> tickets)
     {
         var json = JsonSerializer.Serialize(tickets, new JsonSerializerOptions

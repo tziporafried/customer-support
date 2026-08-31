@@ -51,6 +51,20 @@ export async function createTicket(request: CreateTicketRequest): Promise<Ticket
   return response.json() as Promise<Ticket>
 }
 
+export async function deleteTicket(id: string): Promise<void> {
+  const response = await fetch(`${API_URL}/${encodeURIComponent(id)}`, {
+    method: 'DELETE',
+  })
+
+  if (response.status === 404) {
+    throw new TicketNotFoundError('Ticket not found.')
+  }
+
+  if (!response.ok) {
+    throw new Error('Failed to delete ticket.')
+  }
+}
+
 export async function getTicketById(id: string): Promise<Ticket> {
   const response = await fetch(`${API_URL}/${encodeURIComponent(id)}`)
 

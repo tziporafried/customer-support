@@ -100,8 +100,11 @@ Key files:
 | GET | `/api/tickets/{id}` | Get a single ticket by ID | None |
 | POST | `/api/tickets` | Create a new ticket | None |
 | PUT | `/api/tickets/{id}` | Update a ticket's status/resolution | **Admin JWT required** |
+| DELETE | `/api/tickets/{id}` | Permanently delete a ticket | None |
 
 `PUT /api/tickets/{id}` is protected with `.RequireAuthorization(policy => policy.RequireRole("Admin"))` — a valid JWT with `role=Admin` is required, or the request is rejected with 401/403 before it reaches `TicketService`.
+
+`DELETE /api/tickets/{id}` is intentionally open to any caller (no login required), so anyone can remove a ticket from the tickets table. The frontend asks for confirmation before sending the request.
 
 ## Authentication & Authorization
 
