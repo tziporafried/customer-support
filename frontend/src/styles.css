@@ -321,10 +321,11 @@ th {
   letter-spacing: 0.02em;
 }
 
-th:nth-child(1) { width: 22%; }
-th:nth-child(2) { width: 25%; }
-th:nth-child(3) { width: 37%; }
-th:nth-child(4) { width: 16%; }
+th:nth-child(1) { width: 18%; }
+th:nth-child(2) { width: 20%; }
+th:nth-child(3) { width: 26%; }
+th:nth-child(4) { width: 22%; }
+th:nth-child(5) { width: 14%; }
 
 tbody tr:last-child td { border-bottom: 0; }
 
@@ -342,6 +343,18 @@ tbody tr:hover { background: #f8faff; }
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.ai-summary-cell span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-text-secondary);
+}
+
+.ai-summary-cell--empty {
+  color: var(--color-text-secondary);
 }
 
 .status-badge {

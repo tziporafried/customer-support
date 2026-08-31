@@ -26,6 +26,7 @@ export function TicketTable({ tickets }: TicketTableProps) {
               <th scope="col">Full Name</th>
               <th scope="col">Email</th>
               <th scope="col">Description</th>
+              <th scope="col">AI Summary</th>
               <th scope="col">Status</th>
             </tr>
           </thead>
@@ -38,6 +39,13 @@ export function TicketTable({ tickets }: TicketTableProps) {
                 <td className="email-cell">{ticket.email}</td>
                 <td className="description-cell">
                   <span title={ticket.description}>{ticket.description}</span>
+                </td>
+                <td className="ai-summary-cell">
+                  {ticket.aiSummary ? (
+                    <span title={ticket.aiSummary}>{ticket.aiSummary}</span>
+                  ) : (
+                    <span className="ai-summary-cell--empty">—</span>
+                  )}
                 </td>
                 <td><StatusBadge status={ticket.status} /></td>
               </tr>

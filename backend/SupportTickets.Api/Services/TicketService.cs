@@ -9,19 +9,24 @@ public sealed class TicketService
     private readonly string _filePath;
     private readonly IEmailService _emailService;
     private readonly IAiSummaryService _aiSummaryService;
+    private readonly string _frontendBaseUrl;
     private readonly ILogger<TicketService> _logger;
 
     public TicketService(
         IWebHostEnvironment environment,
         IEmailService emailService,
         IAiSummaryService aiSummaryService,
+        IConfiguration configuration,
         ILogger<TicketService> logger)
     {
         _filePath = Path.Combine(environment.ContentRootPath, "Data", "tickets.json");
         _emailService = emailService;
         _aiSummaryService = aiSummaryService;
+        _frontendBaseUrl = (configuration["Frontend:BaseUrl"] ?? "http://localhost:5173").TrimEnd('/');
         _logger = logger;
     }
+
+    private string BuildTrackingUrl(Guid ticketId) => $"{_frontendBaseUrl}/tickets/{ticketId}";
 
     public async Task<List<Ticket>> GetTicketsAsync(string? status = null, string? search = null)
     {
@@ -91,7 +96,7 @@ public sealed class TicketService
             ticket.Id,
             ticket.Email,
             $"Ticket {ticket.Id} created",
-            $"Your ticket has been created. Ticket ID: {ticket.Id}. Track it at /tickets/{ticket.Id}");
+            $"Your ticket has been created. Ticket ID: {ticket.Id}. Track it at {BuildTrackingUrl(ticket.Id)}");
 
         return ticket;
     }

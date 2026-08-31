@@ -136,6 +136,7 @@ Key files:
   - when a ticket's status and/or resolution changes.
 - If both status and resolution change in the same update request, the two changes are combined into a **single** email rather than sending one per field.
 - Ticket data is always persisted to `tickets.json` first; sending the email is a best-effort step afterward. If the email fails to send, the failure is logged but the ticket update is **not** rolled back.
+- The ticket-created email includes an absolute tracking link built from `Frontend:BaseUrl` (e.g. `https://your-frontend.example/tickets/{id}`), not a relative path — so it resolves correctly regardless of where the email is opened.
 
 ## Environment Variables
 
@@ -152,6 +153,7 @@ None of these are committed to the repository — they must be supplied via envi
 | `Email__Password` | SMTP password / API key |
 | `Email__FromEmail` | "From" address for outgoing emails |
 | `Email__FromName` | "From" display name (optional) |
+| `Frontend__BaseUrl` | Absolute origin of the deployed frontend (e.g. `https://customer-support-1-4k6s.onrender.com`), used to build the tracking link in ticket-created emails. Defaults to `http://localhost:5173` if unset. |
 | `SeedAdmin__Name` | Name for the seeded admin account (optional) |
 | `SeedAdmin__Email` | Email for the seeded admin account (optional) |
 | `SeedAdmin__Password` | Password for the seeded admin account (optional, ≥ 8 chars) |
@@ -170,6 +172,7 @@ $env:Email__Username = "your-smtp-username"
 $env:Email__Password = "your-smtp-password"
 $env:Email__FromEmail = "no-reply@example.com"
 $env:Email__FromName = "Support Tickets"
+$env:Frontend__BaseUrl = "http://localhost:5173"
 $env:SeedAdmin__Name = "Admin"
 $env:SeedAdmin__Email = "admin@example.com"
 $env:SeedAdmin__Password = "replace-with-a-strong-password"
