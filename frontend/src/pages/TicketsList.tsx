@@ -30,9 +30,9 @@ export function TicketsList() {
     setRefreshCount((count) => count + 1)
   }
 
-  function handleTicketDeleted() {
+  function handleTicketDeleted(deletedTicketId: string) {
+    setTickets((current) => current.filter((ticket) => ticket.id !== deletedTicketId))
     setTicketPendingDelete(null)
-    setRefreshCount((count) => count + 1)
   }
 
   return (
@@ -98,7 +98,7 @@ export function TicketsList() {
         <DeleteTicketModal
           ticket={ticketPendingDelete}
           onCancel={() => setTicketPendingDelete(null)}
-          onDeleted={handleTicketDeleted}
+          onDeleted={() => handleTicketDeleted(ticketPendingDelete.id)}
         />
       )}
     </main>
