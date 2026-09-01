@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { deleteTicket, getTickets } from '../api/ticketsApi'
+import { getTickets } from '../api/ticketsApi'
+import { DeleteTicketModal } from '../components/DeleteTicketModal'
 import { NewTicketModal } from '../components/NewTicketModal'
 import { TicketTable } from '../components/TicketTable'
 import type { Ticket } from '../types/Ticket'
@@ -8,10 +9,10 @@ export function TicketsList() {
   const [tickets, setTickets] = useState<Ticket[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [deleteError, setDeleteError] = useState<string | null>(null)
   const [search, setSearch] = useState('')
   const [status, setStatus] = useState('')
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [ticketPendingDelete, setTicketPendingDelete] = useState<Ticket | null>(null)
   const [refreshCount, setRefreshCount] = useState(0)
 
   useEffect(() => {
@@ -29,23 +30,9 @@ export function TicketsList() {
     setRefreshCount((count) => count + 1)
   }
 
-  async function handleDelete(ticket: Ticket) {
-    const confirmed = window.confirm(
-      `Delete the ticket from ${ticket.fullName}? This cannot be undone.`,
-    )
-
-    if (!confirmed) {
-      return
-    }
-
-    setDeleteError(null)
-
-    try {
-      await deleteTicket(ticket.id)
-      setRefreshCount((count) => count + 1)
-    } catch {
-      setDeleteError('Unable to delete ticket.')
-    }
+  function handleTicketDeleted() {
+    setTicketPendingDelete(null)
+    setRefreshCount((count) => count + 1)
   }
 
   return (
@@ -90,19 +77,13 @@ export function TicketsList() {
         </div>
       </section>
 
-      {deleteError && (
-        <div className="feedback-message feedback-message--error" role="alert">
-          {deleteError}
-        </div>
-      )}
-
       <section aria-label="Ticket results" aria-busy={isLoading}>
         {isLoading ? (
           <div className="results-state" role="status">Loading tickets...</div>
         ) : error ? (
           <div className="results-state results-state--error" role="alert">{error}</div>
         ) : (
-          <TicketTable tickets={tickets} onDelete={handleDelete} />
+          <TicketTable tickets={tickets} onDelete={setTicketPendingDelete} />
         )}
       </section>
 
@@ -110,6 +91,14 @@ export function TicketsList() {
         <NewTicketModal
           onClose={() => setIsModalOpen(false)}
           onCreated={handleTicketCreated}
+        />
+      )}
+
+      {ticketPendingDelete && (
+        <DeleteTicketModal
+          ticket={ticketPendingDelete}
+          onCancel={() => setTicketPendingDelete(null)}
+          onDeleted={handleTicketDeleted}
         />
       )}
     </main>
